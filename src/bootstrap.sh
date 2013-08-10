@@ -3,6 +3,9 @@
 # No password for sudo
 echo "%sudo ALL = NOPASSWD: ALL" >> /etc/sudoers
 
+# Tweak sshd to prevent DNS resolution (speed up logins)
+echo 'UseDNS no' >> /etc/ssh/sshd_config
+
 # Public SSH key for vagrant user
 mkdir /home/vagrant/.ssh
 curl -s "https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub" -o /home/vagrant/.ssh/authorized_keys
