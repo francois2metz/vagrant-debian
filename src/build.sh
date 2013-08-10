@@ -16,7 +16,7 @@ case ${argv[0]} in
     ;;
 esac
 
-VERSION="7.0.0"
+VERSION="testing"
 BOX="debian-${VERSION}-${ARCH}"
 
 VBOX_APPLICATION="/Applications/VirtualBox.app"
@@ -27,8 +27,8 @@ FOLDER_ISO="${FOLDER_BASE}/iso"
 FOLDER_BUILD="${FOLDER_BASE}/build"
 FOLDER_VBOX="${FOLDER_BUILD}/vbox"
 
-DEBIAN_MIRROR="ftp.acc.umu.se"
-DEBIAN_URL="http://${DEBIAN_MIRROR}/debian-cd/${VERSION}/${ARCH}/iso-cd"
+DEBIAN_MIRROR="cdimage.debian.org"
+DEBIAN_URL="http://${DEBIAN_MIRROR}/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/"
 DEBIAN_ISO_NAME="debian-${VERSION}-${ARCH}-netinst.iso"
 DEBIAN_ISO_URL="${DEBIAN_URL}/${DEBIAN_ISO_NAME}"
 DEBIAN_ISO_FILE="${FOLDER_ISO}/${DEBIAN_ISO_NAME}"
