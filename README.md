@@ -44,7 +44,7 @@ office 12.04 release:
 
  - Downloading 12.04 final release. (Today as of this writing)
  - Checking MD5 to make sure it is the right version
- - Added a few more checks for external dependencies, mkisofs
+ - Added a few more checks for external dependencies, genisoimage
  - Removed wget, and used curl to reduce dependencies
  - Added more output to see what is going on
  - Still designed to work on Mac OS X :)

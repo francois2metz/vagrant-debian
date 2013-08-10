@@ -84,7 +84,7 @@ else
 fi
 
 info "Unpacking ${DEBIAN_ISO_NAME}..."
-/usr/local/bin/bsdtar -xf "${DEBIAN_ISO_FILE}" -C "${FOLDER_BUILD}/custom"
+bsdtar -xf "${DEBIAN_ISO_FILE}" -C "${FOLDER_BUILD}/custom"
 
 info "Grant write permission..."
 chmod -R u+w "${FOLDER_BUILD}/custom"
@@ -108,7 +108,7 @@ chmod 755 "${FOLDER_BUILD}/custom/poststrap.sh"
 chmod 755 "${FOLDER_BUILD}/custom/bootstrap.sh"
 
 info "Packing ISO files..."
-mkisofs -r -V "Custom Debian Install CD" -cache-inodes -quiet -J -l \
+genisoimage -r -V "Custom Debian Install CD" -cache-inodes -quiet -J -l \
     -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot \
     -boot-load-size 4 -boot-info-table -o "${FOLDER_BUILD}/custom.iso" \
     "${FOLDER_BUILD}/custom"
