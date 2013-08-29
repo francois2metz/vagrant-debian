@@ -16,11 +16,10 @@ case ${argv[0]} in
     ;;
 esac
 
-VERSION="testing"
+VERSION="6.0.7"
 BOX="debian-${VERSION}-${ARCH}"
 
-VBOX_APPLICATION="/Applications/VirtualBox.app"
-VBOX_GUESTADDITIONS="${VBOX_APPLICATION}/Contents/MacOS/VBoxGuestAdditions.iso"
+VBOX_GUESTADDITIONS="/usr/share/virtualbox/VBoxGuestAdditions.iso"
 
 FOLDER_BASE=$(pwd)
 FOLDER_ISO="${FOLDER_BASE}/iso"
@@ -28,7 +27,7 @@ FOLDER_BUILD="${FOLDER_BASE}/build"
 FOLDER_VBOX="${FOLDER_BUILD}/vbox"
 
 DEBIAN_MIRROR="cdimage.debian.org"
-DEBIAN_URL="http://${DEBIAN_MIRROR}/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/"
+DEBIAN_URL="http://${DEBIAN_MIRROR}/cdimage/archive/${VERSION}/${ARCH}/iso-cd/"
 DEBIAN_ISO_NAME="debian-${VERSION}-${ARCH}-netinst.iso"
 DEBIAN_ISO_URL="${DEBIAN_URL}/${DEBIAN_ISO_NAME}"
 DEBIAN_ISO_FILE="${FOLDER_ISO}/${DEBIAN_ISO_NAME}"
@@ -77,7 +76,7 @@ ISO_MD5=$(curl -s "${DEBIAN_URL}/MD5SUMS" | grep "${DEBIAN_ISO_NAME}" | awk '{ p
 if [ ! "${ISO_MD5}" ]; then
     info "Faild to download MD5 hash for ${DEBIAN_ISO_NAME}. Skipping."
 else
-    ISO_HASH=$(md5 -q "${DEBIAN_ISO_FILE}")
+    ISO_HASH=$(md5sum "${DEBIAN_ISO_FILE}" | awk '{ print $1 }')
     if [ "${ISO_MD5}" != "${ISO_HASH}" ]; then
         abort "MD5 does not match - expected ${ISO_MD5}. Aborting."
     fi
